@@ -167,6 +167,8 @@ label define binaryAsthmatic 1 "Actively Asthmatic"
 label define binaryAsthmatic 0 "Never or Former Asthmatic", add
 label values binaryAsthmatic binaryAsthmatic
 
-tab binaryAsthmatic
+//// creating 2x2 table and calcualte ORs
 
-mhodds binaryAsthmatic binarySmoker, c(2,1)
+tab binarySmoker binaryAsthmatic, row
+
+mhodds binaryAsthmatic binarySmoker
