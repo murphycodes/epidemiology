@@ -172,3 +172,7 @@ label values binaryAsthmatic binaryAsthmatic
 tab binarySmoker binaryAsthmatic, row
 
 mhodds binaryAsthmatic binarySmoker
+
+/// Question 4
+
+csi 17854 24040 139024 225997
