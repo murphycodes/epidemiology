@@ -16,6 +16,7 @@ label define highChol 0 "No", add
 label define highChol 2 "Don't Know", add
 label define highChol 3 "Refused to Answer", add
 label values highChol highChol
+
 tab highChol
 
 /// Question 2
@@ -28,29 +29,65 @@ recode male 2 = 0
 
 label variable male "Sex"
 label define male 1 "Male"
-label define male 2 "Female", add
+label define male 0 "Female", add
 label values male male
 
-
-tab highChol male
+tab male highChol, row
 
 /// sexvar male = 1, female = 2
 /// crosstabulate cholmed3 with sexvar
 
 // Question 3
 
+/// 18-64 = 1, 65+ = 2, missing/refused/don't know = 3
+/// cleaning var into binary var
+
 codebook _age65yr
 
 gen olderAdult = _age65yr
-recode _age65yr (1 = 0) (2 = 1) (3 = 0)
-label variable olderAdult "Adults 65 or Older"
+
+recode olderAdult 1 = 0
+recode olderAdult 2 = 1
+recode olderAdult 3 = .
+
+label variable olderAdult "Adults Grouped by Age 65+"
 label define olderAdult 1 "65+",
-label define olderAdult 0 "<65",
+label define olderAdult 0 "<65", add
 label values olderAdult olderAdult
 tab olderAdult
 
+tab olderAdult highChol, row
 
-tab cholmed3 _age65yr, row
+// Question 4
+
+/// cleaning var in _AGE5YR
+
+gen ageRange = _ageg5yr
+
+recode ageRange 1 = 1
+recode ageRange 2 = 1
+recode ageRange 3 = 1
+recode ageRange 4 = 2
+recode ageRange 5 = 2
+recode ageRange 6 = 2
+recode ageRange 7 = 3
+recode ageRange 8 = 3
+recode ageRange 9 = 3
+recode ageRange 10 = 4
+recode ageRange 11 = 4
+recode ageRange 12 = 4
+recode ageRange 13 = 4
+recode ageRange 14 = .
+
+label variable ageRange "Adults Grouped by Age"
+label define ageRange 1 "18 to 34",
+label define ageRange 2 "35 to 49", add
+label define ageRange 3 "50 to 64", add
+label define ageRange 4 "65 or Older", add
+label values ageRange ageRange
+
+tab ageRange highChol, row
+tab male highChol, row
 
 // Part 2
 
