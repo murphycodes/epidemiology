@@ -67,3 +67,7 @@ label values highPressurePreg highPressurePreg
 
 tab highPressurePreg
 prop highPressurePreg
+
+// Question 4
+
+tab highPressurePreg badPhysHealth, row
