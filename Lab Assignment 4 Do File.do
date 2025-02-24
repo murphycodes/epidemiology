@@ -47,3 +47,23 @@ tab badPhysHealth
 /// 2x2 table
 
 tab highPressure badPhysHealth, row
+
+// Question 3
+
+gen highPressurePreg = bphigh6 //// high BP with pregnancy classify into no
+
+recode highPressurePreg 1 = 1
+recode highPressurePreg 2 = 0
+recode highPressurePreg 3 = 0
+recode highPressurePreg 4 = 0
+recode highPressurePreg 7 = .
+recode highPressurePreg 9 = .
+recode highPressurePreg . = .
+
+label variable highPressurePreg "History of High BP"
+label define highPressurePreg 1 "Yes",
+label define highPressurePreg 0 "No", add
+label values highPressurePreg highPressurePreg
+
+tab highPressurePreg
+prop highPressurePreg
